@@ -197,33 +197,33 @@ public class Breakout extends WindowProgram {
 
     /* createBrickWall() - This method builds a matrix of bricks  */
     private void createBrickWall() {
-        for (int i = 0; i < NBRICKS_PER_ROW; i++) {
-            for (int j = 0; j < NBRICK_ROWS; j++) {
+        for (int row = 0; row < NBRICK_ROWS; row++) {
+            for (int col = 0; col < NBRICKS_PER_ROW; col++) {
 
-                int x = getWidth() / 2 - (NBRICKS_PER_ROW * (BRICK_WIDTH + BRICK_SEP)) / 2 + ((BRICK_WIDTH + BRICK_SEP) * i);
-                int y = BRICK_Y_OFFSET + (BRICK_HEIGHT + BRICK_SEP) * j;
+                int x = getWidth() / 2 - (NBRICKS_PER_ROW * (BRICK_WIDTH + BRICK_SEP)) / 2 + ((BRICK_WIDTH + BRICK_SEP) * row);
+                int y = BRICK_Y_OFFSET + (BRICK_HEIGHT + BRICK_SEP) * col;
 
-                createBrick(x, y, j);
+                createBrick(x, y, col);
             }
         }
     }
 
-    private void createBrick(double x, double y, int j) {
+    private void createBrick(double x, double y, int col) {
         GRoundRect brick = new GRoundRect(x, y, BRICK_WIDTH, BRICK_HEIGHT, ROUNDED_BORDER);
         brick.setFilled(true);
 
-        changeColor(j, brick);
+        changeColor(col, brick);
         add(brick);
     }
 
     /**
      * changeColor() - that method draw the colorized brick wall
      *
-     * @param j     - number of row
+     * @param col     - number of row
      * @param brick - single brick
      */
-    private static void changeColor(int j, GRoundRect brick) {
-        switch (j) {
+    private static void changeColor(int col, GRoundRect brick) {
+        switch (col) {
             case 0, 1 -> brick.setColor(BRICKS_COLOR[0]);
             case 2, 3 -> brick.setColor(BRICKS_COLOR[1]);
             case 4, 5 -> brick.setColor(BRICKS_COLOR[2]);
