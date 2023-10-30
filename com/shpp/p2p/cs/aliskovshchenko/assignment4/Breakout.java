@@ -1,4 +1,5 @@
 package com.shpp.p2p.cs.aliskovshchenko.assignment4;
+
 import static com.shpp.p2p.cs.aliskovshchenko.assignment4.Variables.*;
 
 import acm.graphics.*;
@@ -8,7 +9,14 @@ import com.shpp.cs.a.graphics.WindowProgram;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
+
 public class Breakout extends WindowProgram {
+
+    /**
+     * Width and height of application window in pixels
+     */
+    public static int APPLICATION_WIDTH = 400;
+    public static int APPLICATION_HEIGHT = 600;
 
     GRect paddle; // paddle object
     GLabel livesLabel; // count of lives label
@@ -48,7 +56,7 @@ public class Breakout extends WindowProgram {
 
         randomDirectionBall();
 
-        // while count lives more than zero
+        // while count lives more than zero the game continue
         while (bricksCount != 0) {
             GObject collider = getCollidingObject(ball);
 
@@ -146,11 +154,12 @@ public class Breakout extends WindowProgram {
 
     /* ballSpeed() - depending on the number of bricks on the screen, the ball speed increases */
     private void ballSpeed() {
-        if (bricksCount > (NBRICKS_PER_ROW * NBRICK_ROWS) * COUNT_RATIO) {
+        double quarterPartOfBricks = (NBRICKS_PER_ROW * NBRICK_ROWS) * COUNT_RATIO;
+        if (bricksCount > NBRICKS_PER_ROW * NBRICK_ROWS - quarterPartOfBricks) {
             pause(FIRST_GEAR_FPS);
-        } else if (bricksCount > ((NBRICKS_PER_ROW * NBRICK_ROWS) / 2.0) * COUNT_RATIO) {
+        } else if (bricksCount > (NBRICKS_PER_ROW * NBRICK_ROWS) / 2.0 - quarterPartOfBricks){
             pause(SECOND_GEAR_FPS);
-        } else {
+        } else{
             pause(THIRD_GEAR_FPS);
         }
     }
@@ -219,7 +228,7 @@ public class Breakout extends WindowProgram {
     /**
      * changeColor() - that method draw the colorized brick wall
      *
-     * @param col     - number of row
+     * @param col   - number of row
      * @param brick - single brick
      */
     private static void changeColor(int col, GRoundRect brick) {
@@ -244,7 +253,6 @@ public class Breakout extends WindowProgram {
 
     /**
      * mouseMoved() - method which control paddle behavior
-     * Ω
      *
      * @param event - mouse moved event
      */

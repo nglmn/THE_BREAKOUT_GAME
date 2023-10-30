@@ -6,8 +6,8 @@ public interface Variables {
     /**
      * Width and height of application window in pixels
      */
-    int APPLICATION_WIDTH = 400;
-    int APPLICATION_HEIGHT = 600;
+    public static int APPLICATION_WIDTH = 400;
+    public static int APPLICATION_HEIGHT = 600;
 
     /**
      * Dimensions of the paddle
